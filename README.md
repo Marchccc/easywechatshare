@@ -1,6 +1,8 @@
 # easywechatshare
 easy wechat share sdk
 
+实现同域名下，任意页面获取微信分享js配置文件。
+
 ```
 Server端使用方法
 
