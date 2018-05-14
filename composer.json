@@ -1,0 +1,29 @@
+{
+    "name": "O0x00/easywechatshare",
+    "description": "easy wechat share sdk ",
+    "keywords": [
+        "wechat",
+        "wechat share",
+        "微信分享",
+        "前后端分离微信分享"
+    ],
+    "license": "MIT",
+    "homepage": "https://github.com/O0x00/easywechatshare",
+    "authors": [
+        {
+            "name": "剑心",
+            "email": "0x00gc@gmail.com",
+            "homepage": "https://www.rockjun.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5.9",
+        "overtrue/wechat": "3.3.26"
+    },
+    "autoload": {
+        "psr-4": {
+            "easyWechatShare\\": "src/",
+        }
+    }
+}
