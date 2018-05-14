@@ -1,5 +1,5 @@
 {
-    "name": "O0x00/easywechatshare",
+    "name": "o0x00/easywechatshare",
     "description": "easy wechat share sdk ",
     "keywords": [
         "wechat",
@@ -8,7 +8,7 @@
         "前后端分离微信分享"
     ],
     "license": "MIT",
-    "homepage": "https://github.com/O0x00/easywechatshare",
+    "homepage": "https://github.com/o0x00/easywechatshare",
     "authors": [
         {
             "name": "剑心",
