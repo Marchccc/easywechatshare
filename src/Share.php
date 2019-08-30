@@ -1,46 +1,61 @@
-<?php 
+<?php
+
 namespace easyWechatShare;
 
 use EasyWeChat\Foundation\Application;
 
+/**
+ * wechat share
+ * 
+ * @author 0x00 <0x00gc@gmail.com>
+ */
 class Share
 {
     private $wechatApp;
 
     /**
      * init wechat option
-     *
-     * @author 剑心 <0x00gc@gmail.com>
-     * @DateTime  2018-05-14
-     * @param     array      $options  配置数组
+     * 
+     * @param     EasyWeChat\Foundation\Application
      */
-    public function __construct($options)
+    public function __construct(Application $wechatApp)
     {
-        $this->wechatApp = new Application($options);
+        $this->wechatApp = $wechatApp;
     }
 
     /**
      * Get WeChat share js initialization configuration.
-     *
-     * @author 剑心 <0x00gc@gmail.com>
-     * @DateTime  2018-05-14
-     * @param     boolean     $debug  is open debug
-     * @param     string      $url    申请配置的url，默认读取HTTP Referer
+     * 
+     * @param     array       $config  wechat share config
+     * @see https://mp.weixin.qq.com/wiki?t=resource/res_main&id=mp1421141115
+     * 
+     * @param     string      $url     wechat share url,defualt use HTTP Referer
+     * @param     bool        $debug   
      * @return    json
      */
-    public function getConfig($debug = false, $url = '')
+    public function getConfig($config = [], $url = '', $debug = false)
     {
         $js = $this->wechatApp->js;
 
-        if ($url == '') {
-            $url = $_SERVER["HTTP_REFERER"];
-        } else {
-            if (isset($_SERVER["HTTP_REFERER"])) {
-                return 'not found http referer';
-            }
+        if (empty($config)) {
+            $config = [
+                'onMenuShareAppMessage',
+                'onMenuShareTimeline',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'onMenuShareQZone'
+            ];
         }
-        $js->setUrl($url);
 
-        return $js->config(array('onMenuShareAppMessage','onMenuShareTimeline','onMenuShareQQ', 'onMenuShareWeibo','onMenuShareQZone'), $debug);
+        if (isset($_SERVER["HTTP_REFERER"]) && $url == '') {
+            $url = $_SERVER["HTTP_REFERER"];
+        }
+
+        if ($url == '') {
+            throw new \Exception("Share URL is empty");
+        }
+
+        $js->setUrl($url);
+        return $js->config($config, $debug);
     }
 }

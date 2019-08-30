@@ -12,6 +12,7 @@ Server端使用方法
 
 include __DIR__ . '/vendor/autoload.php'; // 引入 composer 入口文件
 
+use EasyWeChat\Foundation\Application;
 use easyWechatShare\Share;
 
 $options = [
@@ -30,9 +31,18 @@ $options = [
     ],
 ];
 
-$Share = new Share($options);
+$config = [
+    'onMenuShareAppMessage', 
+    'onMenuShareTimeline', 
+    'onMenuShareQQ', 
+    'onMenuShareWeibo', 
+    'onMenuShareQZone'
+];
 
-echo $Share->getConfig();
+$Application = new Application($options);
+$Share = new Share($Application);
+
+echo $Share->getConfig($config);
 
 
 ```
